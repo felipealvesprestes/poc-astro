@@ -1,0 +1,31 @@
+version: '3.1'
+services:
+
+  nginx:
+      container_name: nginx
+      image: nginx:latest
+      ports:
+        - "80:80"
+      volumes:
+        - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      networks:
+        - astro-network
+
+  astro:
+    container_name: astro
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: felipealvesprestes/astro
+    volumes:
+      - ./app:/usr/src/app/astro
+    networks:
+      - astro-network
+    ports:
+      - 3000:3000
+
+networks:
+  astro-network:
+    driver: bridge
+  external:
+    external: true
