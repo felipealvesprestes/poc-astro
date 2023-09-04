@@ -18,7 +18,7 @@ services:
       dockerfile: Dockerfile
     image: felipealvesprestes/astro
     volumes:
-      - ./app:/src/app/astro
+      - ./app:/usr/src/app/astro
     networks:
       - astro-network
     ports:
